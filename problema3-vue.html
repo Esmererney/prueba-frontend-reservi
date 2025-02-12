@@ -79,7 +79,7 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 	<html>
 
 		<head>
-
+	
 		</head>
 
 		<body>
@@ -115,8 +115,6 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 			</div>
 
 			<div class="v-container">
-
-
 				
 			</div>
 			<div class="btn">
@@ -142,7 +140,13 @@ export default {
 	},
 	data () {
 		return {
-			myArray: [],
+			myArray: [
+				{id: 1, name: 'Carlos', roles: [1, 2]},
+				{id: 2, name: 'Ana', roles: [2, 3]},
+				{id: 3, name: 'Pedro', roles: [3, 4]},
+				{id: 4, name: 'Maria', roles: [4, 5]},
+				{id: 5, name: 'Juan', roles: [1, 5]}
+			],
 			output:"",
 			
 		}
@@ -222,4 +226,4 @@ export default {
 
 	
 	
-	</style>
+</style>
