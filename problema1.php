@@ -57,7 +57,20 @@ function examen($iMin, $iMax, $aDatos2){
 		return false;
 	}
 	
+	//Generar el array con las condiciones de FOO, BAR y FOOBAR
+	for ($i = $iMin; $i < $iMax; $i++) { 
+		if ($i % 3 === 0 && $i % 5 === 0) {
+			$aDatos[$i] = "FOOBAR";
+		} elseif ($i % 3 === 0) {
+			$aDatos[$i] = "FOO"
+		} elseif ($i % 5 === 0) {
+			$aDatos[$i] = "BAR"
+		} else {
+			$aDatos[$i] = ""
+		}
+	}
 
+	return true;
 }
 
 
