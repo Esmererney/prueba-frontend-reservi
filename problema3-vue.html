@@ -95,9 +95,15 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 			}
 		},
 		computed:{
-		
+			totalElements() {
+				return this.myArray.length;
+			}
+
 		},
 		methods:{
+			generateOutput() {
+				this.output = `El total de lsitado es: ${this.totalElements}`
+			}
 
 		}
 
@@ -157,11 +163,11 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 					<p><strong>Roles:</strong>{{ item.roles.join(', ') }}</p>
 				</div>
 			</div>
-			<div class="btn">
+			<div class="btn" @click="generateOutput">
 				Generar 
 			</div>
 			<div class="output">
-				 
+				 {{ output }}
 			</div>
 
 		</body>
@@ -175,6 +181,8 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 	.clear {
 		clear:both;
 	}
+	
+	/* Completar aquí la respuesta  */	
 
 	body {
 		text-align: center;
@@ -187,6 +195,7 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 		padding: 10px;
 		margin-bottom: 10px;
 		border: 1px dashed gray;
+		display: flex;
 	}
 	
 	.bloque1 {
@@ -234,13 +243,12 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 		padding: 10px;
 		margin-bottom: 5px;
 	}
-	/* Completar aquí la respuesta  */
-	
-	
-	
-	
-	
 
-	
-	
+	.output {
+		margin-top: 10px;
+		font-size: 18px;
+		font-weight: bold;
+	}	
 </style>
+
+<!-- Se deja el codigo en esta version pero se prueba con Vue 3 como esta en el archivo App.vue -->
