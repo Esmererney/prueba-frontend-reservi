@@ -72,183 +72,166 @@ Se debe tratar de aprovechar la herencia.
 y se imprima en el div de clase 'output' de la siguiente manera 'el total de listado es: 'total', el resultado en total debe ser ser un dato o variable computada.
 
 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba Vue</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.prod.js"></script>
+  <style>
+    .clear {
+      clear: both;
+    }
 
-<script>
+    body {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
 
-	export default {
+    .contenedor {
+      width: 600px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px dashed gray;
+      display: flex;
+    }
 
-		name: 'SupportView',
-		components: {
+    .bloque1 {
+      width: 100px;
+      margin-top: 70px;
+      background-color: red;
+      color: white;
+    }
 
-		},
-		data () {
-			return {
-				myArray: [
-					{id: 1, name: 'Carlos', roles: [1, 2]},
-					{id: 2, name: 'Ana', roles: [2, 3]},
-					{id: 3, name: 'Pedro', roles: [3, 4]},
-					{id: 4, name: 'Maria', roles: [4, 5]},
-					{id: 5, name: 'Juan', roles: [1, 5]}
-				],
-				output:"",
-				
-			}
-		},
-		computed:{
-			totalElements() {
-				return this.myArray.length;
-			}
+    .bloque2 {
+      width: 100px;
+      background-color: yellow;
+      color: black;
+    }
 
-		},
-		methods:{
-			generateOutput() {
-				this.output = `El total de lsitado es: ${this.totalElements}`
-			}
+    .contenedor .bloque1,
+    .contenedor .bloque2 {
+      float: left;
+      margin: 5px;
+    }
 
-		}
+    .bloque1:not(.contenedor .bloque1),
+    .bloque2:not(.contenedor .bloque2) {
+      float: none;
+    }
 
-	}
+    .contenedor .bloque1 p {
+      font-style: italic;
+    }
 
-</script>
+    .bloque2 p {
+      font-weight: bold;
+    }
 
-<template>
+    p {
+      padding: 10px;
+    }
 
-	<html>
+    /* Estilos dinámicos */
+    .odd {
+      background-color: #e6e6e6;
+    }
 
-		<head>
-	
-		</head>
+    .hidden {
+      display: none;
+    }
 
-		<body>
+    .btn {
+      cursor: pointer;
+      background-color: blue;
+      color: white;
+      padding: 10px;
+      margin-top: 10px;
+      display: inline-block;
+    }
 
-			<div id="contenedor">
-
+    .output {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+	<body>
+		<div id="app">
+			<div class="contenedor">
 				<div class="bloque1">
-
 					<p>Este es el Bloque 1 dentro del contenedor.</p>
-
 				</div>
 
 				<div class="bloque2">
-
-					<p>Este es el contenido del Bloque 2 dentro del contenedor, este contiene mas texto, por eso debe ser mas largo.</p>
-
+					<p>
+						Este es el contenido del Bloque 2 dentro del contenedor, este contiene
+						más texto, por eso debe ser más largo.
+					</p>
 				</div>
-
 			</div>
 
 			<div class="clear"></div>
 
 			<div class="bloque1">
-
 				<p>Este es el Bloque 1 fuera del contenedor.</p>
-
 			</div>
 
 			<div class="bloque2">
-
 				<p>Este es el Bloque 2 fuera del contenedor.</p>
-
 			</div>
 
 			<div class="v-container">
-				<!-- Uso de v-for para iterar sobre los elementos del array y mostrar un div por cada objeto -->
+				<!-- Generar el listado de elementos con Vue -->
 				<div
-					v-for="item in myarray"
+					v-for="(item, index) in myArray"
 					:key="item.id"
 					class="item"
-					:class="{odd: index % 2 !== 0, hidden: index % 2 === 0}">
-					<p><strong>ID:</strong>{{ item.id }}</p>
-					<p><strong>Name:</strong>{{ item.name }}</p>
-					<p><strong>Roles:</strong>{{ item.roles.join(', ') }}</p>
+					:class="{ odd: index % 2 !== 0, hidden: index % 2 === 0 }"
+				>
+					<p><strong>ID:</strong> {{ item.id }}</p>
+					<p><strong>Name:</strong> {{ item.name }}</p>
+					<p><strong>Roles:</strong> {{ item.roles.join(', ') }}</p>
 				</div>
 			</div>
-			<div class="btn" @click="generateOutput">
-				Generar 
-			</div>
-			<div class="output">
-				 {{ output }}
-			</div>
 
-		</body>
+			<div class="btn" @click="generateOutput">Generar</div>
+			<div class="output">{{ output }}</div>
+		</div>
 
-	</html>
+		<script>
+			const { createApp, reactive, computed } = Vue;
 
-</template>
+			// Crear la aplicación Vue
+			const app = createApp({
+				data() {
+					return {
+						myArray: [
+							{ id: 1, name: "Carlos", roles: [1, 2] },
+							{ id: 2, name: "Ana", roles: [2, 3] },
+							{ id: 3, name: "Pedro", roles: [3, 4] },
+							{ id: 4, name: "Maria", roles: [4, 5] },
+							{ id: 5, name: "Juan", roles: [1, 5] }
+						],
+						output: ""
+					};
+				},
+				computed: {
+					totalElements() {
+						return this.myArray.length;
+					}
+				},
+				methods: {
+					generateOutput() {
+						this.output = `El total de listado es: ${this.totalElements}`;
+					}
+				}
+			});
 
-<style type="text/css">
-
-	.clear {
-		clear:both;
-	}
-	
-	/* Completar aquí la respuesta  */	
-
-	body {
-		text-align: center;
-		display: flex;
-    justify-content: center;
-	}
-	
-	#contenedor {
-		width: 600px;
-		padding: 10px;
-		margin-bottom: 10px;
-		border: 1px dashed gray;
-		display: flex;
-	}
-	
-	.bloque1 {
-		width: 100px;
-		margin-top: 70px;
-		background-color: red;
-		color: white;
-	}
-	
-	.bloque2 {
-		width: 100px;
-		background-color: yellow;
-		color: black;
-	}
-
-	#contenedor .bloque1,
-	#contenedor .bloque2 {
-		float: left;
-		margin: 5px;
-	}
-
-	.bloque1:not(#contenedor .bloque1), 
-	.bloque2:not(#contenedor .bloque2) {
-		float: none;
-	}
-
-	#contenedor .bloque1 p {
-		font-style: italic;
-	}
-
-	.bloque2 p {
-		font-weight: bold;
-	}
-
-	p {
-		padding: 10px;
-	}
-	
-	.hidden {
-		display: none;
-	}
-
-	.odd { 
-		background-color: #e6e6e6;
-		padding: 10px;
-		margin-bottom: 5px;
-	}
-
-	.output {
-		margin-top: 10px;
-		font-size: 18px;
-		font-weight: bold;
-	}	
-</style>
-
-<!-- Se deja el codigo en esta version pero se prueba con Vue 3 como esta en el archivo App.vue -->
+			// Montar la aplicación Vue en el contenedor con id 'app'
+			app.mount("#app");
+		</script>
+	</body>
+</html>
