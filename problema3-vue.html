@@ -115,7 +115,12 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 			</div>
 
 			<div class="v-container">
-				
+				<!-- Uso de v-for para iterar sobre los elementos del array y mostrar un div por cada objeto -->
+				<div v-for="item in myarray" :key="item.id" class="item">
+					<p><strong>ID:</strong>{{ item.id }}</p>
+					<p><strong>Name:</strong>{{ item.name }}</p>
+					<p><strong>Roles:</strong>{{ item.roles.join(', ') }}</p>
+				</div>
 			</div>
 			<div class="btn">
 				Generar 
