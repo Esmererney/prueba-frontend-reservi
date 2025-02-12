@@ -36,8 +36,26 @@ error_reporting(E_ALL); // Si el examen está bien hecho NO debe mostrar ningún
 
 // ************************************ FUNCION A COMPLETAR **************************************** //
 
-function examen(){
-	
+function examen($iMin, $iMax, $aDatos2){
+	//Validaciones de los parámetros
+	if (!is_int($iMin) || !is_int($iMax) || !is_array($aDatos)) {
+		return false;
+	}
+
+	//Validar que los números estén en el rango de 1 a 999
+	if ($iMin < 1 || $iMin > 999 || $iMax < 1 || $iMax > 999) {
+		return false;
+	}
+
+	//Validar que iMax sea mayor que iMin
+	if ($iMax <= $iMin) {
+		return false
+	}
+
+	//Validar que $aDatos esté vacío antes de llenarlo
+	if (!empty($aDatos)) {
+		return false;
+	}
 	
 
 }
