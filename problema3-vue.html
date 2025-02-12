@@ -73,6 +73,37 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 
 -->
 
+<script>
+
+	export default {
+
+		name: 'SupportView',
+		components: {
+
+		},
+		data () {
+			return {
+				myArray: [
+					{id: 1, name: 'Carlos', roles: [1, 2]},
+					{id: 2, name: 'Ana', roles: [2, 3]},
+					{id: 3, name: 'Pedro', roles: [3, 4]},
+					{id: 4, name: 'Maria', roles: [4, 5]},
+					{id: 5, name: 'Juan', roles: [1, 5]}
+				],
+				output:"",
+				
+			}
+		},
+		computed:{
+		
+		},
+		methods:{
+
+		}
+
+	}
+
+</script>
 
 <template>
 
@@ -116,7 +147,11 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 
 			<div class="v-container">
 				<!-- Uso de v-for para iterar sobre los elementos del array y mostrar un div por cada objeto -->
-				<div v-for="item in myarray" :key="item.id" class="item">
+				<div
+					v-for="item in myarray"
+					:key="item.id"
+					class="item"
+					:class="{odd: index % 2 !== 0, hidden: index % 2 === 0}">
 					<p><strong>ID:</strong>{{ item.id }}</p>
 					<p><strong>Name:</strong>{{ item.name }}</p>
 					<p><strong>Roles:</strong>{{ item.roles.join(', ') }}</p>
@@ -134,38 +169,6 @@ y se imprima en el div de clase 'output' de la siguiente manera 'el total de lis
 	</html>
 
 </template>
-
-<script>
-
-export default {
-
-	name: 'SupportView',
-	components: {
-
-	},
-	data () {
-		return {
-			myArray: [
-				{id: 1, name: 'Carlos', roles: [1, 2]},
-				{id: 2, name: 'Ana', roles: [2, 3]},
-				{id: 3, name: 'Pedro', roles: [3, 4]},
-				{id: 4, name: 'Maria', roles: [4, 5]},
-				{id: 5, name: 'Juan', roles: [1, 5]}
-			],
-			output:"",
-			
-		}
-	},
-	computed:{
-	
-	},
-	methods:{
-
-	}
-
-}
-
-</script>
 
 <style type="text/css">
 
@@ -222,6 +225,15 @@ export default {
 		padding: 10px;
 	}
 	
+	.hidden {
+		display: none;
+	}
+
+	.odd { 
+		background-color: #e6e6e6;
+		padding: 10px;
+		margin-bottom: 5px;
+	}
 	/* Completar aquí la respuesta  */
 	
 	
